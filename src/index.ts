@@ -10,7 +10,7 @@ const app = new App({
 app.message(async ({ event, say }) => {
 	console.log(JSON.stringify(event))
 	
-	if (!event.attachments)
+	if (!event.files)
 		return
 	
 	await say({
