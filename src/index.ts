@@ -8,10 +8,15 @@ const app = new App({
 })
 
 app.message(async ({ event, say }) => {
+	console.log(JSON.stringify(event))
+	
+	if (!event.attachments)
+		return
+	
 	await say({
 		channel: event.channel,
 		thread_ts: event.ts,
-		text: JSON.stringify(event)
+		text: 'Success'
 	})
 })
 
