@@ -7,11 +7,11 @@ const app = new App({
 	token: process.env.SLACK_TOKEN
 })
 
-app.event('message.channels', async ({ event }) => {
+app.message(async ({ event }) => {
 	await app.client.chat.postMessage({
 		channel: event.channel,
 		thread_ts: event.ts,
-		text: JSON.stringify(event)
+		text: 'hello'
 	})
 })
 
