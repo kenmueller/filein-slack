@@ -1,5 +1,5 @@
 export default interface File {
-	name: string
+	name: string | null
 	mimetype: string
-	permalink: string
+	url_private: string
 }

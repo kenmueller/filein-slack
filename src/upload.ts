@@ -11,8 +11,9 @@ const storage = firebase.storage().bucket()
 
 const upload = async (file: File) => {
 	try {
-		const id = newId(file)
-		const { name, mimetype: type } = file
+		const name = file.name ?? 'Untitled'
+		const type = file.mimetype
+		const id = newId(name, type)
 		
 		const data = await getData(file)
 		const size = data.byteLength

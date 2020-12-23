@@ -1,13 +1,11 @@
 import { nanoid } from 'nanoid'
 import { getExtension } from 'mime'
 
-import File from './file'
-
-const newId = ({ name, mimetype }: File) => {
+const newId = (name: string, type: string) => {
 	const indexOfDot = name.lastIndexOf('.')
 	const extension = ~indexOfDot
 		? name.slice(indexOfDot + 1)
-		: getExtension(mimetype)
+		: getExtension(type)
 	
 	if (!extension)
 		throw new Error('Invalid name')
