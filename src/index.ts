@@ -15,6 +15,10 @@ app.message(async ({ event }) => {
 	})
 })
 
+app.error(async error => {
+	console.error(error)
+})
+
 app.start(PORT).then(() => {
 	console.log(`Listening on port ${PORT}`)
 })
