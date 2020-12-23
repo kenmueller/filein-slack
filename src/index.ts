@@ -7,8 +7,12 @@ const app = new App({
 	token: process.env.SLACK_TOKEN
 })
 
-app.message(async ({ say }) => {
-	await say('Hello!')
+app.message(async ({ event, say }) => {
+	await say({
+		channel: event.channel,
+		thread_ts: event.ts,
+		text: JSON.stringify(event)
+	})
 })
 
 app.error(async error => {
