@@ -12,9 +12,7 @@ const getData = async (file: File) => {
 	if (!response.ok)
 		throw new Error('An error occurred when loading the file')
 	
-	const data = await response.buffer()
-	console.log(`DATA IS BUFFER: ${Buffer.isBuffer(data)}`)
-	return data
+	return response.buffer()
 }
 
 export default getData

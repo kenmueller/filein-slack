@@ -21,7 +21,7 @@ const upload = async (file: File) => {
 		if (size > MAX_FILE_SIZE)
 			return 'File too large, maximum is 10 GB'
 		
-		await storage.file(id).save(file, {
+		await storage.file(id).save(data, {
 			public: true,
 			gzip: true,
 			metadata: {
