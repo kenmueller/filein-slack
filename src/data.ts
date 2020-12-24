@@ -12,7 +12,11 @@ const getData = async (file: File) => {
 	if (!response.ok)
 		throw new Error('An error occurred when loading the file')
 	
-	return response.buffer()
+	try {
+		return response.buffer()
+	} catch {
+		throw new Error(await response.text())
+	}
 }
 
 export default getData
