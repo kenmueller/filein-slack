@@ -17,7 +17,12 @@ app.message(async ({ event: { channel, ts, text, files }, say }) => {
 		upload(file, isPublic)
 	))
 	
-	await say({ channel, thread_ts: ts, text: urls.join('\n') })
+	await say({
+		channel,
+		thread_ts: ts,
+		unfurl_links: false,
+		text: urls.join('\n')
+	})
 })
 
 app.error(async error => {
