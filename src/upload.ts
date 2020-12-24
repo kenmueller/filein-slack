@@ -9,7 +9,7 @@ const { FieldValue } = firebase.firestore
 const firestore = firebase.firestore()
 const storage = firebase.storage().bucket()
 
-const upload = async (file: File) => {
+const upload = async (file: File, isPublic: boolean) => {
 	try {
 		const name = file.name ?? 'Untitled'
 		const type = file.mimetype
@@ -39,7 +39,7 @@ const upload = async (file: File) => {
 			owner: null,
 			comments: 0,
 			uploaded: FieldValue.serverTimestamp(),
-			public: false
+			public: isPublic
 		})
 		
 		return `https://filein.io/${id}`

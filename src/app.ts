@@ -1,5 +1,6 @@
 import { App } from '@slack/bolt'
 
+import File from './file'
 import upload from './upload'
 
 const app = new App({
@@ -7,15 +8,16 @@ const app = new App({
 	token: process.env.SLACK_TOKEN
 })
 
-app.message(async ({ event: { channel, ts, files }, say }) => {
+app.message(async ({ event: { channel, ts, text, files }, say }) => {
 	if (!files?.length)
 		return
 	
-	await say({
-		channel,
-		thread_ts: ts,
-		text: (await Promise.all(files.map(upload))).join('\n')
-	})
+	const isPublic = text?.trim().toLowerCase() === 'public'
+	const urls = await Promise.all(files.map((file: File) =>
+		upload(file, isPublic)
+	))
+	
+	await say({ channel, thread_ts: ts, text: urls.join('\n') })
 })
 
 app.error(async error => {
