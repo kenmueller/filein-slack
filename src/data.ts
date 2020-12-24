@@ -4,7 +4,7 @@ import File from './file'
 
 const AUTHORIZATION = `Bearer ${process.env.SLACK_TOKEN}`
 
-const getData = async (file: File): Promise<Buffer> => {
+const getData = async (file: File) => {
 	const response = await fetch(file.url_private, {
 		headers: { Authorization: AUTHORIZATION }
 	})
@@ -12,13 +12,9 @@ const getData = async (file: File): Promise<Buffer> => {
 	if (!response.ok)
 		throw new Error('An error occurred when loading the file')
 	
-	throw new Error(JSON.stringify(await response.json()))
-	
-	// try {
-	// 	return response.buffer()
-	// } catch {
-	// 	throw new Error(JSON.stringify(await response.json()))
-	// }
+	const data = await response.buffer()
+	console.log(`DATA IS BUFFER: ${Buffer.isBuffer(data)}`)
+	return data
 }
 
 export default getData
