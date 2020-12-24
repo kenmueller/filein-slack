@@ -21,6 +21,7 @@ app.message(async ({ event: { channel, ts, text, files }, say }) => {
 		channel,
 		thread_ts: ts,
 		unfurl_links: false,
+		unfurl_media: false,
 		text: urls.join('\n')
 	})
 })
