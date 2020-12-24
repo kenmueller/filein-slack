@@ -15,7 +15,7 @@ const getData = async (file: File) => {
 	try {
 		return response.buffer()
 	} catch {
-		throw new Error(await response.text())
+		throw new Error(JSON.stringify(await response.json()))
 	}
 }
 
