@@ -42,7 +42,7 @@ const upload = async (file: File, isPublic: boolean) => {
 			public: isPublic
 		})
 		
-		return `https://filein.io/${id}`
+		return `<https://filein.io/${id}|${name}>`
 	} catch (error) {
 		console.error(error)
 		return error.message
